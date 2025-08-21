@@ -1,0 +1,25 @@
+# Ignore compiled class files
+*.class
+
+# Ignore IDE/editor folders
+.vscode/
+.idea/
+
+# Ignore build output folders (if used)
+out/
+bin/
+build/
+
+# Ignore OS files
+.DS_Store
+Thumbs.db
+
+# Ignore logs and temporary files
+*.log
+*.tmp
+
+docs/
+
+GradientDescent/  
+
+RUVO --Luno/ 
