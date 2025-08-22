@@ -16,8 +16,16 @@ public class LedgerLinkApp {
             System.out.println("1. View all customers");
             // FUTURE: Add more menu options here 
             System.out.println("2. Exit"); 
-            System.out.println("Enter your choice: "); 
-            int choice = scanner.nextInt();
+            System.out.print("Enter your choice: ");
+            int choice;
+            if (scanner.hasNextInt()) {
+                choice = scanner.nextInt();
+                scanner.nextLine(); // consume trailing newline
+            } else {
+                System.out.println("Please enter a number (e.g., 1 or 2).");
+                scanner.nextLine(); // discard invalid input
+                continue; // prompt again
+            }
 
             switch (choice){
                 case 1:
@@ -77,6 +85,4 @@ public class LedgerLinkApp {
             DBUtils.closeConnection(conn);
         }
     }   
-
-
 }
