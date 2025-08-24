@@ -53,7 +53,7 @@ public class LedgerLinkApp {
 
                 case 4:
                     // Handles deposit input and call TransactionOperations.deposit() 
-                    System.out.print("Enter Account ID for ddeposit: ");
+                    System.out.print("Enter Account ID for deposit: ");
                     int accountId;
                     if(scanner.hasNextInt()){
                         accountId = scanner.nextInt();
