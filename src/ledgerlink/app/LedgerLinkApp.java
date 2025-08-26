@@ -1,6 +1,10 @@
-package ledgerlink;
+package ledgerlink.app;
 
-import java.util.Scanner; 
+import java.util.Scanner;
+
+import ledgerlink.model.Account;
+import ledgerlink.model.Customer;
+import ledgerlink.model.Transaction; 
 
 public class LedgerLinkApp {
 
@@ -30,7 +34,7 @@ public class LedgerLinkApp {
 
             switch(choice){
                 case 1: 
-                    CustomerOperations.viewAllCustomers();
+                    Customer.viewAllCustomers();
                     break;
 
 
@@ -39,7 +43,7 @@ public class LedgerLinkApp {
                     if(scanner.hasNextInt()){
                         int customerId = scanner.nextInt();
                         scanner.nextLine(); // Consume newline
-                        AccountOperations.viewAccountsByCustomer(customerId);
+                        Account.viewAccountsByCustomer(customerId);
                     } else {
                         System.out.println("Invalid Customer ID. Please enter a valid number.");
                         scanner.nextLine(); // Clear invalid input
@@ -72,7 +76,7 @@ public class LedgerLinkApp {
                     } 
                     System.out.print("Enter description (optional): ");
                     String description = scanner.nextLine();
-                    TransactionOperations.deposit(accountId, amount, description);
+                    Transaction.deposit(accountId, amount, description);
                     break; 
 
 
@@ -99,7 +103,7 @@ public class LedgerLinkApp {
                     }
                     System.out.println("Enter description (optional): ");
                     String withdrawDescription = scanner.nextLine();
-                    TransactionOperations.withdraw(withdrawAccountId, withdrawAmount, withdrawDescription);
+                    Transaction.withdraw(withdrawAccountId, withdrawAmount, withdrawDescription);
                     break; 
                 
                 
@@ -139,7 +143,7 @@ public class LedgerLinkApp {
 
                     System.out.print("Enter description (optional): ");
                     String transferDescription = scanner.nextLine();
-                    TransactionOperations.transfer(fromAccountId, toAccountId, transferAmount, transferDescription);
+                    Transaction.transfer(fromAccountId, toAccountId, transferAmount, transferDescription);
                     break; 
                 
                 case 6: 

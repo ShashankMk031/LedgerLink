@@ -1,10 +1,12 @@
-package ledgerlink;
+package ledgerlink.model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-public class TransactionOperations {
+import ledgerlink.util.DBUtils;
+
+public class Transaction {
 
     /**
      * Deposit a specified amount into an account.

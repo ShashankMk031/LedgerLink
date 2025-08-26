@@ -1,10 +1,12 @@
-package ledgerlink;
+package ledgerlink.model;
 
 import java.sql.Connection;
 import java.sql.ResultSet; 
-import java.sql.Statement; 
+import java.sql.Statement;
 
-public class CustomerOperations {
+import ledgerlink.util.DBUtils; 
+
+public class Customer {
     // Prints all customer from the database 
     public static void viewAllCustomers(){
         Connection conn = null;

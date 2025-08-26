@@ -1,10 +1,12 @@
-package ledgerlink;
+package ledgerlink.model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-public class AccountOperations {
+import ledgerlink.util.DBUtils;
+
+public class Account {
 
     /**
      * Displays all accounts for the given customer_id.

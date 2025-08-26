@@ -1,4 +1,4 @@
-package ledgerlink;
+package ledgerlink.util;
 
 import io.github.cdimascio.dotenv.Dotenv;
 import java.sql.Connection;
