@@ -12,7 +12,8 @@ LedgerLink is a simple Java-based banking CLI application that dynamically inter
 
 ## Run 
 Compile 
-javac -cp ./lib/mysql-connector-java-9.4.0.jar src/ledgerlink/*.java 
+javac -cp ./lib/mysql-connector-j-9.4.0.jar:./lib/dotenv-java-2.2.0.jar ./src/ledgerlink/app/*.java ./src/ledgerlink/service/*.java ./src/ledgerlink/dao/*.java ./src/ledgerlink/model/*.java ./src/ledgerlink/util/*.java
+
 
 Run the application 
-java -cp ./lib/mysql-connector-java-9.4.0.jar:./src ledgerlink.LedgerLinkApp
+java -cp ./lib/mysql-connector-j-9.4.0.jar:./lib/dotenv-java-2.2.0.jar:./src ledgerlink.app.LedgerLinkApp

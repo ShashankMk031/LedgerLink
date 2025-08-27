@@ -16,7 +16,7 @@ public class CustomerDAO {
     public boolean insert(Customer customer) throws SQLException {
         String sql = "INSERT INTO Customer (name, email, phone) VALUES (?, ?, ?)";
 
-        try(Connection conn = DBUtils.getConnection();
+        try(Connection conn = DBUtil.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql)){
                 ps.setString(1, customer.getName());
                 ps.setString(2, customer.getEmail());
@@ -28,7 +28,7 @@ public class CustomerDAO {
     // Find customer by ID 
     public Customer findById(int customerId) throws SQLException {
         String sql= "SELECT customer_id, name, email, phone FROM Customer WHERE customer_id = ?";
-        try(Connection conn = DBUtils.getConnection();
+        try(Connection conn = DBUtil.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql)){
                 ps.setInt(1, customerId);
                 try(ResultSet rs = ps.executeQuery()){
@@ -50,7 +50,7 @@ public class CustomerDAO {
     public List<Customer> findAll() throws SQLException {
         String sql = "SELECT customer_id, name, email, phone FROM Customer"; 
         List<Customer> customers = new ArrayList<>();
-        try (Connection conn DBUtils.getConnection();
+        try (Connection conn = DBUtil.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery()){
                 while (rs.next()) {
@@ -68,7 +68,7 @@ public class CustomerDAO {
     // Update an existing customer 
     public boolean update (Customer customer) throws SQLException {
         String sql = "UPDATE Customer SET name = ? , email = ?, phone = ? WHERE customer_id = ?";
-        try (Connection conn = DBUtils.getConnection(); 
+        try (Connection conn = DBUtil.getConnection(); 
             PreparedStatement ps = conn.prepareStatement(sql)) {
                 ps.setString(1, customer.getName());
                 ps.setString(2, customer.getEmail());
@@ -81,7 +81,7 @@ public class CustomerDAO {
     // Delete a customer by ID
     public boolean delete(int customerId) throws SQLException {
         String sql = "DELETE FROM Customer WHERE customer_id = ?";
-        try (Connection conn = DBUtils.getConnection();
+        try (Connection conn = DBUtil.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql)) {
                 ps.setInt(1, customerId);
                 return ps.executeUpdate() == 1;

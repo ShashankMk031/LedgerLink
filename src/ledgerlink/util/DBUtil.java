@@ -5,13 +5,13 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import io.github.cdimascio.dotenv.Dotenv; 
 
-public class DBUtils { 
+public class DBUtil { 
     
     private static Dotenv dotenv = Dotenv.load(); 
 
-    private static final Sting URL = dotenv.get("DB_URL");
-    private static final String USER = dotenv.get("DB_USER");
-    private static final String PASSWORD = dotenv.get("DB_PASSWORD"); 
+    private static final String URL = dotenv.get("LEDGERLINK_DB_URL");
+    private static final String USER = dotenv.get("LEDGERLINK_DB_USER");
+    private static final String PASSWORD = dotenv.get("LEDGERLINK_DB_PASSWORD"); 
 
     static {
         try {

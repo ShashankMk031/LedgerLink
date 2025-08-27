@@ -1,5 +1,7 @@
 package ledgerlink.service;  // Service layers sits b/w the DAO and the UI/Controller layer
 
+import ledgerlink.dao.CustomerDAO;
+
 /* 
  * DAO = raw DB operations (CRUD) 
  * Service = Business logic, validation, transaction management 
@@ -9,7 +11,6 @@ package ledgerlink.service;  // Service layers sits b/w the DAO and the UI/Contr
  */
 
 import ledgerlink.model.Customer;
-import ledgerlink.dao.CustomerDAO; 
 
 import java.sql.SQLException;
 import java.util.List;
