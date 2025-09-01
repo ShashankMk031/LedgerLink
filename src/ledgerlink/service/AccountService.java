@@ -2,7 +2,7 @@ package ledgerlink.service;
 
 import ledgerlink.dao.AccountDAO;
 import ledgerlink.model.Account;
-import ledgerlink.util.DBUtils; 
+import ledgerlink.util.DBUtil; 
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -27,6 +27,26 @@ public class AccountService {
         } catch (SQLException e) {
             System.err.println("Error fetching account: " + e.getMessage());
             return null; 
+        }
+    } 
+
+    public boolean deposit(int accountId, double amount) {
+        if (amount <= 0) return false; 
+        try (Connection conn = DBUtil.getConnection()) {
+            conn.setAutoCommit(false); 
+            Account acc = accountDAO.findById(accountId); 
+            if (acc == null || !"ACTIVE".equals(acc.getStatus())) {
+                conn.rollback();
+                return false;
+            }
+
+            boolean ok = accountDAO.updateBalance(conn, accountId, amount); 
+            if (!ok) { conn.rollback(); return false; } 
+            conn.commit(); 
+            return true; 
+        } catch (SQLException e) {
+            System.err.println("Deposit failed: " + e.getMessage());
+            return false; 
         }
     }
 
@@ -80,8 +100,9 @@ public class AccountService {
             System.err.println("Transfer failed: " + e.getMessage());
             return false; 
         } 
+    }
 
-        public boolean closeAccount(int accountId) {
+    public boolean closeAccount(int accountId) {
             try {
                 Account a = accountDAO.findById(accountId);
                 if (a == null || !"ACTIVE".equals(a.getStatus()) || a.getBalance() != 0) {
@@ -92,6 +113,7 @@ public class AccountService {
                 System.err.println("Error closing account: " + e.getMessage());
                 return false;
             }
-        }
+        
     }
+
 }

@@ -1,7 +1,7 @@
 package ledgerlink.dao;
 
 import ledgerlink.model.Account;
-import ledgerlink.util.DBUtils;
+import ledgerlink.util.DBUtil;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -11,7 +11,7 @@ public class AccountDAO {
 
     public boolean insert(Account a) throws SQLException {
         String sql = "INSERT INTO account (customerid, currency, balance, status, branchId) VALUES (?, ?, ?, ?, ?)";
-        try (Connection conn = DBUtils.getConnection();
+        try (Connection conn = DBUtil.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             ps.setInt(1, a.getCustomerId());
             ps.setString(2, a.getCurrency());
@@ -32,7 +32,7 @@ public class AccountDAO {
 
     public Account findById(int accountId) throws SQLException {
         String sql = "SELECT accountId, customerId, currency, balance, status, branchId FROM account WHERE accountId = ?";
-        try (Connection conn = DBUtils.getConnection();
+        try (Connection conn = DBUtil.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, accountId);
             try (ResultSet rs = ps.executeQuery()) {
@@ -45,7 +45,7 @@ public class AccountDAO {
     public List<Account> findByCustomerId(int customerId) throws SQLException {
         String sql = "SELECT accountId, customerId, currency, balance, status, branchId FROM account WHERE customerId = ?";
         List<Account> list = new ArrayList<>();
-        try (Connection conn = DBUtils.getConnection();
+        try (Connection conn = DBUtil.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, customerId);
             try (ResultSet rs = ps.executeQuery()) {
@@ -57,7 +57,7 @@ public class AccountDAO {
 
     public boolean updateStatus(int accountId, String status) throws SQLException {
         String sql = "UPDATE account SET status = ? WHERE accountId = ?";
-        try (Connection conn = DBUtils.getConnection();
+        try (Connection conn = DBUtil.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, status);
             ps.setInt(2, accountId);
