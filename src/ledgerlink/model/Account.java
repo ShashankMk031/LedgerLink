@@ -10,13 +10,13 @@ public class Account {
 
     public Account () {}   
 
-    public Account (int accountId, int customerId, String currency, double balance, String status, Integer branchid) {
+    public Account (int accountId, int customerId, String currency, double balance, String status, Integer branchId) {
         this.accountId = accountId; 
         this.customerId = customerId; 
         this.currency = currency; 
         this.balance = balance; 
         this.status = status; 
-        this.branchId = branchid;
+        this.branchId = branchId;
     } 
     public int getAccountId() { return accountId; } 
     public void setAccountId(int accountId) { this.accountId = accountId; }

@@ -13,16 +13,16 @@ public class Transaction {
 
     public Transaction () {} 
 
-    public Transaction(int transactionId, int accountId, String type, double amount, LocalDateTime createdAt,  String desciption, Integer relatedAccountId) {
-        this.transactionId = transactionId; 
-        this.accountId = accountId; 
-        this.type = type; 
-        this.amount = amount; 
-        this.createdAt = createdAt;
-        this.description = description; 
-        this.relatedAccountId = relatedAccountId;
-    }
-
+public Transaction(int transactionId, int accountId, String type, double amount,
+                   LocalDateTime createdAt, String description, Integer relatedAccountId) { // CHANGED param name
+    this.transactionId = transactionId;
+    this.accountId = accountId;
+    this.type = type;
+    this.amount = amount;
+    this.createdAt = createdAt;
+    this.description = description; 
+    this.relatedAccountId = relatedAccountId;
+}
     public int getTransactionId() { return transactionId; } 
     public void setTransactionId(int transactionId) { this.transactionId = transactionId; }
 

@@ -14,7 +14,7 @@ public class CustomerDAO {
 
     // insert a new customer into the database 
     public boolean insert(Customer customer) throws SQLException {
-        String sql = "INSERT INTO Customer (name, email, phone) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO customer (name, email, phone) VALUES (?, ?, ?)";
 
         try(Connection conn = DBUtil.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql)){
@@ -27,7 +27,7 @@ public class CustomerDAO {
 
     // Find customer by ID 
     public Customer findById(int customerId) throws SQLException {
-        String sql= "SELECT customer_id, name, email, phone FROM Customer WHERE customer_id = ?";
+        String sql= "SELECT customerId, name, email, phone FROM Customer WHERE customerId = ?";
         try(Connection conn = DBUtil.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql)){
                 ps.setInt(1, customerId);
@@ -48,7 +48,7 @@ public class CustomerDAO {
 
     // Retrieve all customers 
     public List<Customer> findAll() throws SQLException {
-        String sql = "SELECT customer_id, name, email, phone FROM Customer"; 
+        String sql = "SELECT customerId, name, email, phone FROM customer"; 
         List<Customer> customers = new ArrayList<>();
         try (Connection conn = DBUtil.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -67,7 +67,7 @@ public class CustomerDAO {
 
     // Update an existing customer 
     public boolean update (Customer customer) throws SQLException {
-        String sql = "UPDATE Customer SET name = ? , email = ?, phone = ? WHERE customer_id = ?";
+        String sql = "UPDATE customer SET name = ? , email = ?, phone = ? WHERE customerId = ?";
         try (Connection conn = DBUtil.getConnection(); 
             PreparedStatement ps = conn.prepareStatement(sql)) {
                 ps.setString(1, customer.getName());
@@ -80,7 +80,7 @@ public class CustomerDAO {
 
     // Delete a customer by ID
     public boolean delete(int customerId) throws SQLException {
-        String sql = "DELETE FROM Customer WHERE customer_id = ?";
+        String sql = "DELETE FROM customer WHERE customerId = ?";
         try (Connection conn = DBUtil.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql)) {
                 ps.setInt(1, customerId);

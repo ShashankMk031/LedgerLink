@@ -14,9 +14,9 @@ package ledgerlink.model;
 import java.time.LocalDateTime; 
 
 public class Loan { 
-    private int loadId; 
+    private int loanId; 
     private int customerId; 
-    private Integer tragetAccountId; 
+    private Integer targetAccountId; 
     private double principal ; 
     private double annualRate; 
     private int termMonths; 
@@ -29,9 +29,9 @@ public class Loan {
     public Loan() {} 
 
     public Loan(int loadId, int customerId, Integer targetAccountId, double principal, double annualRate , int termMonths, String status, LocalDateTime appliedAt, LocalDateTime approvedAt, LocalDateTime disbursedAt) {
-        this.loadId = loadId; 
+        this.loanId = loadId; 
         this.customerId = customerId; 
-        this.tragetAccountId = targetAccountId; 
+        this.targetAccountId = targetAccountId; 
         this.principal = principal; 
         this.annualRate = annualRate; 
         this.termMonths = termMonths; 
@@ -41,14 +41,14 @@ public class Loan {
         this.disbursedAt = disbursedAt;
     } 
 
-    public int getLoanId() { return loadId; } 
-    public void setLoanId(int loanId) { this.loadId = loanId; } 
+    public int getLoanId() { return loanId; } 
+    public void setLoanId(int loanId) { this.loanId = loanId; } 
 
     public int getCustomerId() { return customerId; } 
     public void setCustomerId(int customerId) { this.customerId = customerId; } 
 
-    public Integer getTargetAccountId() { return tragetAccountId; } 
-    public void setTargetAccountId(Integer targetAccountId) { this.tragetAccountId = targetAccountId; } 
+    public Integer getTargetAccountId() { return targetAccountId; } 
+    public void setTargetAccountId(Integer targetAccountId) { this.targetAccountId = targetAccountId; } 
 
     public double getPrincipal() { return principal; } 
     public void setPrincipal(double principal) { this.principal = principal; } 

@@ -10,7 +10,7 @@ import java.util.List;
 public class AccountDAO {
 
     public boolean insert(Account a) throws SQLException {
-        String sql = "INSERT INTO account (customerid, currency, balance, status, branchId) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO account (customerId, currency, balance, status, branchId) VALUES (?, ?, ?, ?, ?)";
         try (Connection conn = DBUtil.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             ps.setInt(1, a.getCustomerId());
