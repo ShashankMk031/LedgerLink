@@ -34,7 +34,7 @@ public class CustomerDAO {
                 try(ResultSet rs = ps.executeQuery()){
                     if(rs.next()){
                         return new Customer(
-                            rs.getInt("customer_id"),
+                            rs.getInt("customerId"),
                             rs.getString("name"),
                             rs.getString("email"),
                             rs.getString("phone")
@@ -55,7 +55,7 @@ public class CustomerDAO {
             ResultSet rs = ps.executeQuery()){
                 while (rs.next()) {
                     customers.add(new Customer(
-                        rs.getInt("customer_id"),
+                        rs.getInt("customerId"),
                         rs.getString("name"),
                         rs.getString("email"),
                         rs.getString("phone")

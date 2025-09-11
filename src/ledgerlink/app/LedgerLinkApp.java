@@ -162,7 +162,7 @@ public class LedgerLinkApp {
         String phone = scanner.nextLine();
         if (!phone.isBlank()) customer.setPhone(phone);
 
-        boolean success = customerService.updateCustomer(customer); 
+        boolean success = customerService.updateCustomer(existingCustomer); 
         if (success) {
             System.out.println("Customer updated successfully.");
         } else {

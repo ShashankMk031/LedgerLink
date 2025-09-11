@@ -51,6 +51,7 @@ public class AccountService {
             // audit + notify after commit
             AuditLogger.log("system", "DEPOSIT", "Account", "accountId=" + accountId + ", amount=" + amount);
             notificationService.notifyEmail("noreply@example.com", "Deposit", "Account " + accountId + " credited " + amount);
+            fraudService.checkTransaction(accountId, "DEPOSIT", amount); 
 
             return true;
         } catch (SQLException e) {
@@ -75,7 +76,7 @@ public class AccountService {
             // audit + notify after commit
             AuditLogger.log("system", "WITHDRAW", "Account", "accountId=" + accountId + ", amount=" + amount);
             notificationService.notifyEmail("noreply@example.com", "Withdrawal", "Account " + accountId + " debited " + amount);
-
+            fraudService.checkTransaction(accountId,"WITHDRAW", amount);
             return true;
         } catch (SQLException e) {
             System.err.println("Withdraw failed: " + e.getMessage());
@@ -107,7 +108,8 @@ public class AccountService {
             // audit + notify after commit
             AuditLogger.log("system", "TRANSFER", "Account", "from=" + fromAccountId + ", to=" + toAccountId + ", amount=" + amount);
             notificationService.notifyEmail("noreply@example.com", "Transfer", "From " + fromAccountId + " to " + toAccountId + " amount " + amount);
-            
+            fraudService.checkTransaction(toAccountId, "TRANSFER", amount); 
+            fraudService.checkTransaction(toAccountId, "TRANSFER", amount);
 
             return true;
         } catch (SQLException e) {

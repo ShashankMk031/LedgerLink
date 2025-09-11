@@ -33,8 +33,21 @@ public class TransactionDAO {
     }
 
     public List<Transaction> findByAccountId(int accountId, Connection externalConn) throws SQLException {
+        return findByAccountId(accountId, 0, Integer.MAX_VALUE, externalConn);
+    }
+    
+    /**
+     * Find transactions for a specific account with pagination support
+     * @param accountId The account ID to search for
+     * @param offset Number of records to skip (for pagination)
+     * @param limit Maximum number of records to return
+     * @param externalConn Optional existing connection (for transactions)
+     * @return List of matching transactions
+     * @throws SQLException if a database error occurs
+     */
+    public List<Transaction> findByAccountId(int accountId, int offset, int limit, Connection externalConn) throws SQLException {
         String sql = "SELECT transactionId, accountId, type, amount, createdAt, description, relatedAccountId " +
-                     "FROM transaction_ledger WHERE accountId = ? ORDER BY createdAt DESC";
+                   "FROM transaction_ledger WHERE accountId = ? ORDER BY createdAt DESC LIMIT ? OFFSET ?";
         boolean createdHere = false;
         Connection conn = externalConn;
         if (conn == null) {
@@ -44,6 +57,8 @@ public class TransactionDAO {
         }
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, accountId);
+            ps.setInt(2, limit);
+            ps.setInt(3, offset);
             try (ResultSet rs = ps.executeQuery()) {
                 List<Transaction> list = new ArrayList<>();
                 while (rs.next()) {

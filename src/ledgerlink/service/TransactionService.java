@@ -9,6 +9,7 @@ import ledgerlink.util.DBUtil;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class TransactionService {
     private final TransactionDAO transactionDAO = new TransactionDAO();
@@ -40,6 +41,15 @@ public class TransactionService {
         } catch (SQLException e) {
             System.err.println("Deposit failed: " + e.getMessage());
             return false;
+        }
+    }
+
+    public List<Transaction> listTransactionsByAccountSimple(int accountId, int offset, int limit) {
+        try (Connection conn = DBUtil.getConnection()) {
+            return transactionDAO.findByAccountId(accountId, offset, limit, null);
+        } catch (SQLException e) {
+            System.err.println("Error retrieving transactions: " + e.getMessage());
+            return List.of();
         }
     }
 
