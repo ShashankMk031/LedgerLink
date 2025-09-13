@@ -1,93 +1,150 @@
 # LedgerLink
 
-LedgerLink is a Java-based banking application with both CLI and GUI interfaces that dynamically interacts with a MySQL database to manage customers, accounts, and transactions.
+![LedgerLink Logo](https://via.placeholder.com/150x50?text=LedgerLink)
 
-## Features
+LedgerLink is a comprehensive Java-based banking application featuring a modern JavaFX GUI for managing customers, accounts, transactions, and loans. The application provides a user-friendly interface for financial operations while maintaining a robust backend with MySQL database integration.
 
-- View customers, accounts, and transactions
-- Add, update, and delete customers
-- Create and manage accounts
-- Perform deposits, withdrawals, and transfers
-- JDBC integration with MySQL
-- Modern JavaFX-based GUI
+## ✨ Features
 
-## Prerequisites
+- **Customer Management**: Add, view, update, and delete customer information
+- **Account Operations**: Create and manage bank accounts with various account types
+- **Transaction Processing**: Handle deposits, withdrawals, and fund transfers
+- **Loan Management**: Process and track different types of loans
+- **Modern UI**: Intuitive JavaFX-based graphical user interface
+- **Secure**: Environment-based configuration for database credentials
+- **Modular Design**: Clean architecture with separation of concerns
 
-- Java 17 or higher
-- Gradle 7.0 or higher
+## Quick Start
+
+### Prerequisites
+
+- Java 17 or higher (OpenJDK recommended)
 - MySQL Server 8.0 or higher
+- Git (for version control)
 
-## Setup
+### Installation
 
-1. Clone the repository:
+1. **Clone the repository**:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/ShashankMk031/LedgerLink.git
    cd LedgerLink
    ```
 
-2. Set up the database:
-   - Create a MySQL database named `ledgerlink`
-   - Run the SQL script from `docs/mvp-schema.sql` to create the necessary tables
-
-3. Create a `.env` file in the project root with your database credentials:
+2. **Set up the database**:
+   ```sql
+   CREATE DATABASE ledgerlink;
+   USE ledgerlink;
+   -- Run the schema script
+   SOURCE docs/mvp-schema.sql;
    ```
+
+3. **Configure environment variables**:
+   Create a `.env` file in the project root:
+   ```env
    DB_URL=jdbc:mysql://localhost:3306/ledgerlink
    DB_USER=your_username
-   DB_PASSWORD=your_password
+   DB_PASSWORD=your_secure_password
    ```
 
-## Build and Run
+## Build & Run
 
-### Using Gradle (Recommended)
+### Option 1: Using Provided Scripts (Recommended)
 
-```bash
-# Build the project
-./gradlew build
+1. **Set up JavaFX** (first time only):
+   ```bash
+   chmod +x setup_javafx_ubuntu.sh
+   ./setup_javafx_ubuntu.sh
+   ```
 
-# Run the application
-./gradlew run
-```
+2. **Run the application**:
+   ```bash
+   ./run_app.sh
+   ```
 
-### Manual Compilation (Legacy)
+### Option 2: Manual Build
 
-```bash
-# Compile
-javac -cp ./lib/mysql-connector-j-9.4.0.jar:./lib/dotenv-java-2.2.0.jar \
-    ./src/ledgerlink/app/*.java \
-    ./src/ledgerlink/service/*.java \
-    ./src/ledgerlink/dao/*.java \
-    ./src/ledgerlink/model/*.java \
-    ./src/ledgerlink/util/*.java \
-    ./src/ledgerlink/gui/*.java
+1. **Build the project**:
+   ```bash
+   ./build.sh
+   ```
 
-# Run
-java -cp ./lib/mysql-connector-j-9.4.0.jar:./lib/dotenv-java-2.2.0.jar:./src \
-    --module-path ./build/javafx-sdk/javafx-sdk-17.0.8/lib \
-    --add-modules javafx.controls,javafx.fxml \
-    ledgerlink.app.LedgerLinkApp
-```
+2. **Run the application**:
+   ```bash
+   ./run_with_javafx.sh
+   ```
 
 ## Project Structure
 
-- `src/ledgerlink/app/` - Main application classes
-- `src/ledgerlink/dao/` - Data Access Objects
-- `src/ledgerlink/model/` - Data model classes
-- `src/ledgerlink/service/` - Business logic
-- `src/ledgerlink/gui/` - JavaFX GUI controllers and views
-- `src/ledgerlink/util/` - Utility classes
-- `docs/` - Documentation and database schemas
+```
+LedgerLink/
+├── src/ledgerlink/
+│   ├── analytics/         # Data analysis and reporting
+│   ├── api/               # API endpoints
+│   ├── app/               # Main application class
+│   ├── dao/               # Data Access Objects
+│   ├── gui/               # JavaFX controllers and FXML views
+│   ├── model/             # Data models (Customer, Account, etc.)
+│   ├── notifications/     # Email and SMS notifications
+│   ├── scheduler/         # Background jobs and scheduling
+│   ├── security/          # Authentication and authorization
+│   ├── service/           # Business logic services
+│   └── util/              # Utility classes
+├── lib/                   # External dependencies (JDBC, JavaFX, etc.)
+├── docs/                  # Documentation and database schemas
+├── .gitignore             # Git ignore rules
+├── build.gradle           # Gradle build configuration
+├── sources.txt            # List of Java source files for compilation
+├── README.md              # This file
+
+# Build and Run Scripts
+├── build.sh               # Compile the application
+├── run.sh                 # Run without JavaFX
+├── run_app.sh             # Main run script with JavaFX
+├── run_javafx.sh          # Alternative JavaFX launcher
+├── run_with_javafx.sh     # Another JavaFX launcher
+├── setup_env.sh           # Environment setup
+└── setup_javafx_ubuntu.sh # JavaFX setup for Ubuntu/Debian
+```
 
 ## Dependencies
 
-- JavaFX 17.0.8
-- MySQL Connector/J 9.4.0
-- dotenv-java 2.2.0
-- JUnit 5.8.1 (for testing)
+- **JavaFX 17.0.8** - For the graphical user interface
+- **MySQL Connector/J 9.4.0** - Database connectivity
+- **dotenv-java 2.2.0** - Environment variable management
+- **JUnit 5.8.1** - For unit testing
+
+## Available Scripts
+
+- `build.sh` - Compiles the Java application
+- `run.sh` - Runs the application without JavaFX
+- `run_app.sh` - Main script to run with JavaFX (recommended)
+- `run_javafx.sh` - Alternative JavaFX launcher
+- `run_with_javafx.sh` - Additional JavaFX launcher
+- `setup_javafx_ubuntu.sh` - Sets up JavaFX on Ubuntu/Debian
+- `setup_env.sh` - Configures the development environment
+
+## sources.txt
+
+This file contains a list of all Java source files in the project and is used by some build scripts for compilation. It helps in:
+- Explicitly defining which files to compile
+- Maintaining a consistent build process
+- Ensuring all necessary files are included in the build
 
 ## Contributing
+
+Contributions are welcome! Please follow these steps:
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
 3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Contact
+
+- **Shashank M K** - [@ShashankMk031](https://github.com/ShashankMk031)
+- **Project Link**: [https://github.com/ShashankMk031/LedgerLink](https://github.com/ShashankMk031/LedgerLink)
