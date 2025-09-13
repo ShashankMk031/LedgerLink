@@ -1,0 +1,65 @@
+plugins {
+    id 'application'
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src']
+        }
+        resources {
+            srcDirs = ['src']
+            include '**/*.fxml'
+            include '**/*.css'
+            include '**/*.properties'
+        }
+    }
+    test {
+        java {
+            srcDirs = ['test']
+        }
+    }
+}
+
+dependencies {
+    // JavaFX
+    implementation 'org.openjfx:javafx-controls:17.0.8'
+    implementation 'org.openjfx:javafx-fxml:17.0.8'
+    implementation 'org.openjfx:javafx-graphics:17.0.8'
+    implementation 'org.openjfx:javafx-base:17.0.8'
+    
+    // Database
+    implementation 'mysql:mysql-connector-java:8.0.31'
+    
+    // Environment variables
+    implementation 'io.github.cdimascio:dotenv-java:2.2.0'
+    
+    // Testing
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
+}
+
+application {
+    mainClass = 'ledgerlink.app.LedgerLinkApp'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+run {
+    jvmArgs = [
+        '--add-opens', 'javafx.graphics/javafx.scene=ALL-UNNAMED',
+        '--add-exports', 'javafx.graphics/com.sun.javafx.sg.prism=ALL-UNNAMED'
+    ]
+}
