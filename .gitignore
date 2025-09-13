@@ -1,60 +1,82 @@
-# Ignore compiled class files
+# Build outputs
+build/
+bin/
+out/
+.gradle/
+
+# Compiled class files
 *.class
 
-# Ignore IDE/editor folders
-.vscode/
-.idea/
-
-# Ignore build output folders (if used)
-out/
-bin/
-build/
-
-# Ignore OS files
-.DS_Store
-Thumbs.db
-
-# Ignore logs and temporary files
+# Log files
 *.log
-*.tmp
 
-docs/MyNotes.txt
+# Package Files
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
 
-GradientDescent/  
+# virtual machine crash logs
+hs_err_pid*
 
-
-.env 
-
-
-# Ignore build output folders
-/bin/
-/build/
-/out/
-
-# Ignore libraries
-/lib/*.jar
-
-# Ignore environment files
-.env
-
-# Ignore IDE files
-.vscode/
+# IDE specific files
 .idea/
 *.iml
-*.ipr
 *.iws
+*.ipr
+.vscode/
+*.launch
+.settings/
+.project
+.classpath
 
-# Ignore logs
-*.log
-
-# Ignore OS files
+# OS generated files
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
 
-# Ignore compiled class files
-*.class
+# JavaFX specific
+javafx-src.zip
+javafx-api/*.jar
 
-# Ignore temporary files
+# Environment variables
+.env
+
+# Local configuration files
+*.properties
+
+# Gradle files
+!gradle-wrapper.jar
+!gradle/wrapper/gradle-wrapper.properties
+
+# Local development files
+local.*
+
+# Documentation
+/docs/MyNotes.txt
+
+# Temp files
 *.tmp
 *.swp
 *.bak
+*.backup
+*~
+
+# JavaFX cache
+.cache/
+
+# Maven (if used)
+target/
+
+# VS Code specific
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
