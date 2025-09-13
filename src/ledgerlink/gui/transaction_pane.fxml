@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<GridPane xmlns:fx="http://javafx.com/fxml" fx:controller="ledgerlink.gui.TransactionController"
+          hgap="10" vgap="10">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+    <Label text="Account ID:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+    <TextField fx:id="accountIdField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+    <Label text="Page:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+    <TextField fx:id="pageField" GridPane.rowIndex="1" GridPane.columnIndex="1" promptText="1"/>
+    <Label text="Page size:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+    <TextField fx:id="pageSizeField" GridPane.rowIndex="2" GridPane.columnIndex="1" promptText="10"/>
+    <Button text="View Transactions" onAction="#handleViewTransaction" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+    <Label text="Result:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+    <TextArea fx:id="resultArea" prefRowCount="10" prefColumnCount="40" editable="false" GridPane.rowIndex="5" GridPane.columnIndex="0" GridPane.columnSpan="2"/>
+</GridPane>

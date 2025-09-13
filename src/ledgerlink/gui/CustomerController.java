@@ -1,22 +1,21 @@
 package ledgerlink.gui; 
 
-import java.awt.Label;
-import java.awt.event.ActionEvent;
 import ledgerlink.model.Customer; 
 import ledgerlink.service.CustomerService; 
 
 import javafx.fxml.FXML; 
-import java.scene.control.*; 
-import java.event.ActionEvent; 
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.event.ActionEvent; 
 
-public class CustomerController{ 
+public class CustomerController { 
     private final CustomerService customerService = new CustomerService(); 
 
     @FXML private TextField nameField; 
     @FXML private TextField emailField; 
-    @FXML private TextField phonTextField ; 
+    @FXML private TextField phonTextField; 
     @FXML private TextField customerIdField; 
-    @FXML private Label statusLabel; 
+    @FXML private Label statusLabel;
 
     @FXML 
     public void handleAddCustomer(ActionEvent event) { 
@@ -44,5 +43,31 @@ public class CustomerController{
         int customerId = Integer.parseInt(customerIdField.getText()); 
         boolean ok = customerService.deleteCustomer(customerId); 
         statusLabel.setText(ok ? "Customer deleted" : "Error deleting customer."); 
+    }
+    
+    @FXML
+    public void handleFindCustomer(ActionEvent event) {
+        try {
+            int customerId = Integer.parseInt(customerIdField.getText().trim());
+            Customer customer = customerService.getCustomerById(customerId);
+            
+            if (customer != null) {
+                nameField.setText(customer.getName());
+                emailField.setText(customer.getEmail());
+                phonTextField.setText(customer.getPhone());
+                statusLabel.setText("Customer found");
+            } else {
+                statusLabel.setText("Customer not found");
+                // Clear fields if customer not found
+                nameField.clear();
+                emailField.clear();
+                phonTextField.clear();
+            }
+        } catch (NumberFormatException e) {
+            statusLabel.setText("Please enter a valid customer ID");
+        } catch (Exception e) {
+            statusLabel.setText("Error finding customer: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 }

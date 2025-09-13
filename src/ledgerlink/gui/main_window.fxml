@@ -7,22 +7,22 @@
 <TabPane xmlns:fx="http://javafx.com/fxml">
     <Tab text="Accounts">
         <AnchorPane>
-            <fx:include source="account_pane.fxml"/>
+            <fx:include source="/ledgerlink/gui/account_pane.fxml"/>
         </AnchorPane>
     </Tab>
     <Tab text="Customers">
         <AnchorPane>
-            <fx:include source="customer_pane.fxml"/>
+            <fx:include source="/ledgerlink/gui/customer_pane.fxml"/>
         </AnchorPane>
     </Tab>
     <Tab text="Transactions">
         <AnchorPane>
-            <fx:include source="transaction_pane.fxml"/>
+            <fx:include source="/ledgerlink/gui/transaction_pane.fxml"/>
         </AnchorPane>
     </Tab>
     <Tab text="Loans">
         <AnchorPane>
-            <fx:include source="loan_pane.fxml"/>
+            <fx:include source="/ledgerlink/gui/loan_pane.fxml"/>
         </AnchorPane>
     </Tab>
 </TabPane>

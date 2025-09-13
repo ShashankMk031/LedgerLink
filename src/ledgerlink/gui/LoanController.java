@@ -1,10 +1,11 @@
 package ledgerlink.gui;
 
-import java.awt.TextField;
 import ledgerlink.service.LoanService;
 import javafx.fxml.FXML; 
-import javafx.scene.control.*; 
-import javafx.event.ActionEvent; 
+import javafx.scene.control.TextField;
+import javafx.scene.control.Label;
+import javafx.scene.control.Button;
+import javafx.event.ActionEvent;
 
 public class LoanController { 
     private final LoanService loanService = new LoanService();

@@ -1,15 +1,13 @@
 package ledgerlink.gui; 
 
-import ledgerlink.model.Account; 
 import ledgerlink.service.AccountService; 
 
-// JavaFx 
+// JavaFX imports
 import javafx.fxml.FXML; 
-import javafx.scene.control.*;
-
-import java.awt.TextField;
-
-import javafx.event.ActionEvent; 
+import javafx.scene.control.TextField;
+import javafx.scene.control.Label;
+import javafx.scene.control.Button;
+import javafx.event.ActionEvent;
 
 public class AccountController { 
     
@@ -37,7 +35,7 @@ public class AccountController {
     //"Deposit" click 
     @FXML 
     public void handleDeposit(ActionEvent event) { 
-        int accountId = Integer.parseInt.parseInt(accountIdField.getText()); 
+        int accountId = Integer.parseInt(accountIdField.getText()); 
         double amount = Double.parseDouble(depositField.getText()); 
         boolean ok = accountService.deposit(accountId, amount); 
         statusLabel.setText(ok ? "Deposit successful" : "Error depositing.");
@@ -56,7 +54,7 @@ public class AccountController {
     @FXML 
     public void handleTransfer(ActionEvent event) { 
         int fromId = Integer.parseInt(accountIdField.getText()); 
-        int toId = Integer.pareInt(transferToField.getText()); 
+        int toId = Integer.parseInt(transferToField.getText()); 
         double amount = Double.parseDouble(transferAmountField.getText()); 
         boolean ok = accountService.transfer(fromId, toId, amount); 
         statusLabel.setText(ok ? "Transfer successful" : "Error transferring."); 
